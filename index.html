@@ -1,275 +1,1168 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>فروشگاه ناروین پوز</title>
-<style>
-/* فونت ساده آفلاین */
-body{
-  margin:0;
-  font-family:sans-serif;
-  background: linear-gradient(135deg,#0f3d2e,#000);
-  color:#fff;
-}
-header{
-  border-bottom:1px solid rgba(255,255,255,0.1);
-}
-#menuToggle{
-  cursor:pointer;
-  font-size:28px;
-}
-nav#menu{
-  display:none;
-  flex-direction:column;
-  text-align:center;
-  background:rgba(0,0,0,0.8);
-}
-nav#menu a{
-  padding:10px;
-  color:#fff;
-  text-decoration:none;
-  border-bottom:1px solid rgba(255,255,255,0.2);
-}
-nav#menu a:last-child{
-  border-bottom:none;
-}
-header .top-bar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 20px;
-}
-.slider-container{
-  overflow:hidden;
-  padding:20px 0;
-}
-.slider{
-  display:flex;
-  gap:15px;
-  transition: transform 0.5s ease;
-}
-.card{
-  min-width:220px;
-  background:rgba(0,0,0,0.6);
-  border-radius:10px;
-  padding:15px;
-  flex-shrink:0;
-  text-align:center;
-}
-.card img{
-  width:100%;
-  height:130px;
-  object-fit:cover;
-  border-radius:8px;
-  margin-bottom:10px;
-}
-.price{
-  color:#00ffae;
-  font-weight:bold;
-}
-.card button{
-  margin-top:8px;
-  padding:6px;
-  background:#00ffae;
-  color:#003322;
-  border:none;
-  border-radius:5px;
-  font-weight:500;
-  cursor:pointer;
-}
-.container{
-  max-width:800px;
-  margin:40px auto;
-  background:rgba(0,0,0,0.7);
-  padding:20px;
-  border-radius:12px;
-}
-h2{
-  margin-bottom:15px;
-  text-align:center;
-}
-img.product-img{
-  width:100%;
-  max-width:300px;
-  border-radius:10px;
-  margin-bottom:15px;
-  display:block;
-  margin:auto;
-}
-.details{
-  text-align:right;
-  margin-top:15px;
-}
-.details ul{
-  list-style:none;
-  padding:0;
-}
-.details ul li{
-  padding:4px 0;
-  border-bottom:1px solid rgba(255,255,255,0.2);
-}
-.back{
-  display:block;
-  color:#aaa;
-  text-decoration:none;
-  text-align:center;
-  margin-top:10px;
-}
-#cartItems .item{
-  padding:8px 0;
-  border-bottom:1px solid rgba(255,255,255,0.2);
-  display:flex;
-  justify-content:space-between;
-}
-.total{
-  margin-top:15px;
-  font-weight:bold;
-  text-align:right;
-}
-button.checkout{
-  margin-top:15px;
-  padding:10px;
-  background:#00ffae;
-  color:#003322;
-  border:none;
-  border-radius:6px;
-  font-weight:500;
-  cursor:pointer;
-}
-.hidden{display:none;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMOL - خدمات مجازی حرفه‌ای</title>
+    <style>
+        /* استایل اصلی سایت AMOL */
+        :root {
+            --primary: #4FC3F7;
+            --primary-dark: #29B6F6;
+            --primary-light: #81D4FA;
+            --dark-bg: #0F172A;
+            --dark-card: #1E293B;
+            --text: #E2E8F0;
+            --text-light: #94A3B8;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --border: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* هدر */
+        .header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-a {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            transform: rotate(-5deg);
+        }
+
+        .logo-a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 28px solid var(--primary);
+            top: 0;
+            left: 5px;
+        }
+
+        .logo-a::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--primary-light);
+            top: 15px;
+            left: 15px;
+            transform: rotate(45deg);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .logo-text h1 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .logo-text p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* ناوبری */
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+            background: rgba(79, 195, 247, 0.1);
+        }
+
+        /* دکمه‌ها */
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(79, 195, 247, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: rgba(79, 195, 247, 0.1);
+        }
+
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* کارت‌های آمار */
+        .stats-section {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            color: var(--primary);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: var(--dark-card);
+            border-radius: 12px;
+            padding: 25px;
+            border-top: 3px solid var(--primary);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .stat-progress {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 3px;
+        }
+
+        /* خدمات */
+        .services-section {
+            padding: 40px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--dark-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+        }
+
+        .service-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .service-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .service-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .badge-fake {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--danger);
+        }
+
+        .badge-real {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        .service-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .service-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .service-price {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .service-price small {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .service-features {
+            padding: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .feature-item i {
+            color: var(--primary);
+        }
+
+        /* مدال */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--dark-card);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--danger);
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        /* فرم */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.2);
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .payment-option {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-option input {
+            display: none;
+        }
+
+        .payment-option span {
+            display: block;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .payment-option input:checked + span {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .payment-option input:checked ~ .payment-option {
+            border-color: var(--primary);
+            background: rgba(79, 195, 247, 0.1);
+        }
+
+        .order-total {
+            background: rgba(79, 195, 247, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .order-total span {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* فوتر */
+        .footer {
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 1px solid var(--border);
+            padding: 50px 0 20px;
+            margin-top: 50px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary);
+        }
+
+        .contact-info p {
+            color: var(--text-light);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .payment-icons {
+            display: flex;
+            gap: 15px;
+            font-size: 1.5rem;
+            color: var(--text-light);
+        }
+
+        /* ریسپانسیو */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 992px) {
+            .nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .header .container {
+                flex-wrap: wrap;
+            }
+            
+            .user-actions {
+                margin-left: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid,
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .user-actions {
+                width: 100%;
+                display: flex;
+                gap: 10px;
+            }
+            
+            .btn {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- هدر سایت -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-area">
+                <div class="logo">
+                    <div class="logo-a"></div>
+                </div>
+                <div class="logo-text">
+                    <h1>AMOL</h1>
+                    <p>خدمات مجازی حرفه‌ای</p>
+                </div>
+            </div>
+            
+            <nav class="nav">
+                <a href="#" class="nav-link active"><i class="fas fa-home"></i> صفحه اصلی</a>
+                <a href="#" class="nav-link"><i class="fas fa-shopping-cart"></i> خدمات</a>
+                <a href="#" class="nav-link"><i class="fas fa-tags"></i> قیمت‌ها</a>
+                <a href="#" class="nav-link"><i class="fas fa-question-circle"></i> راهنما</a>
+                <a href="#" class="nav-link"><i class="fas fa-headset"></i> پشتیبانی</a>
+            </nav>
+            
+            <div class="user-actions">
+                <button class="btn btn-outline" onclick="simulateLogin()"><i class="fas fa-user"></i> پنل کاربری</button>
+                <button class="btn btn-primary"><i class="fas fa-shopping-basket"></i> سبد خرید (0)</button>
+            </div>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
 
-<header>
-<div class="top-bar">
-<h1>فروشگاه ناروین پوز</h1>
-<div id="menuToggle">☰</div>
-</div>
-<nav id="menu">
-<a href="#" onclick="showSection('home')">صفحه اصلی</a>
-<a href="#" onclick="showSection('cartPage')">سبد خرید</a>
-</nav>
-</header>
+    <!-- کارت‌های آمار -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-chart-line"></i> آمار لحظه‌ای</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(79, 195, 247, 0.1);">
+                        <i class="fas fa-boxes" style="color: #4FC3F7;"></i>
+                    </div>
+                    <h3 class="stat-number" data-target="9">0</h3>
+                    <p class="stat-label">خدمات فعال</p>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(129, 212, 250, 0.1);">
+                        <i class="fas fa-users" style="color: #81D4FA;"></i>
+                    </div>
+                    <h3 class="stat-number" data-target="154">0</h3>
+                    <p class="stat-label">مشتری راضی</p>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(41, 182, 246, 0.1);">
+                        <i class="fas fa-shopping-cart" style="color: #29B6F6;"></i>
+                    </div>
+                    <h3 class="stat-number" data-target="27">0</h3>
+                    <p class="stat-label">سفارش امروز</p>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(79, 195, 247, 0.1);">
+                        <i class="fas fa-bolt" style="color: #4FC3F7;"></i>
+                    </div>
+                    <h3 class="stat-number" data-target="99">0</h3>
+                    <p class="stat-label">درصد رضایت</p>
+                    <div class="stat-progress">
+                        <div class="progress-bar" style="width: 99%; background: #4FC3F7;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- صفحه اصلی -->
-<div id="home">
-<div class="slider-container">
-<h2>کارتخوان‌ها</h2>
-<div class="slider" id="sliderTop"></div>
-</div>
-<div class="slider-container">
-<h2>لوازم جانبی</h2>
-<div class="slider" id="sliderBottom"></div>
-</div>
-</div>
+    <!-- لیست خدمات -->
+    <section class="services-section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-star"></i> پرفروش‌ترین خدمات</h2>
+            <div class="services-grid" id="servicesContainer">
+                <!-- خدمات توسط جاوااسکریپت لود می‌شوند -->
+            </div>
+        </div>
+    </section>
 
-<!-- صفحه محصول -->
-<div id="productPage" class="hidden container">
-<h2 id="productName">نام محصول</h2>
-<img id="productImage" class="product-img" src="" alt="تصویر محصول">
-<div class="price" id="productPrice">قیمت</div>
-<button id="addCart">افزودن به سبد خرید</button>
-<div class="details">
-<h3>توضیحات کوتاه</h3>
-<p id="productDesc">توضیحات محصول</p>
-<h3>مشخصات فنی</h3>
-<ul id="productSpecs"></ul>
-</div>
-<a class="back" href="#" onclick="showSection('home')">بازگشت به فروشگاه</a>
-</div>
+    <!-- مدال خرید -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-shopping-cart"></i> تکمیل سفارش</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="order-summary">
+                    <h4 id="serviceName">سرویس انتخابی</h4>
+                    <p id="serviceType">نوع: ---</p>
+                    <p id="servicePrice">قیمت: 0 تومان</p>
+                </div>
+                
+                <form id="orderForm">
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> ایمیل یا تلگرام</label>
+                        <input type="text" id="email" placeholder="example@email.com یا @telegram" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quantity"><i class="fas fa-hashtag"></i> تعداد</label>
+                        <input type="number" id="quantity" min="1" value="1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="link"><i class="fas fa-link"></i> لینک هدف</label>
+                        <input type="text" id="link" placeholder="https://t.me/..." required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-credit-card"></i> روش پرداخت</label>
+                        <div class="payment-methods">
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="payir" checked>
+                                <span>Pay.ir</span>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="idpay">
+                                <span>IDPay</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="order-total">
+                        <p>مبلغ قابل پرداخت: <span id="totalPrice">0</span> تومان</p>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-lock"></i> پرداخت و ثبت سفارش
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 
-<!-- صفحه سبد خرید -->
-<div id="cartPage" class="hidden container">
-<h2>سبد خرید شما</h2>
-<div id="cartItems"></div>
-<div class="total" id="totalPrice"></div>
-<button class="checkout" onclick="checkout()">تکمیل خرید</button>
-<a class="back" href="#" onclick="showSection('home')">بازگشت به فروشگاه</a>
-</div>
+    <!-- فوتر -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo-area">
+                        <div class="logo">
+                            <div class="logo-a"></div>
+                        </div>
+                        <div class="logo-text">
+                            <h3>AMOL</h3>
+                            <p>خدمات مجازی حرفه‌ای</p>
+                        </div>
+                    </div>
+                    <p class="footer-about">
+                        ارائه بهترین خدمات مجازی با کیفیت بالا و پشتیبانی ۲۴ ساعته
+                    </p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>خدمات ما</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> ممبر تلگرام</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> فالوور اینستاگرام</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> ممبر روبیکا</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> کانفیگ V2Ray</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>لینک‌های مفید</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> راهنمای خرید</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> سوالات متداول</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> شرایط استفاده</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> حریم خصوصی</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>تماس با ما</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-headset"></i> پشتیبانی ۲۴/۷</p>
+                        <p><i class="fab fa-telegram"></i> تلگرام: @AMOL_Support</p>
+                        <p><i class="fas fa-envelope"></i> ایمیل: support@amol.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2023 AMOL - تمام حقوق محفوظ است.</p>
+                <div class="payment-icons">
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fas fa-credit-card"></i>
+                    <i class="fas fa-university"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-<script>
-// داده محصولات
-const products=[
-{name:"دستگاه کش لس T1 Pro",price:"۳۸,۰۰۰,۰۰۰ تومان",desc:"توضیحات T1 Pro",id:"t1pro",specs:["سایز کوچک","باطری داخلی"]},
-{name:"دستگاه کارتخوان PAX S90",price:"۷,۰۰۰,۰۰۰ تومان",desc:"توضیحات PAX S90",id:"paxs90",specs:["قابلیت NFC","صفحه نمایش رنگی"]},
-{name:"دستگاه کارتخوان AMP 9000",price:"۱۰,۰۰۰,۰۰۰ تومان",desc:"توضیحات AMP 9000",id:"amp9000",specs:["سرعت بالا","سبک و کوچک"]},
-{name:"دستگاه کارتخوان PAX D230",price:"۱۲,۰۰۰,۰۰۰ تومان",desc:"توضیحات PAX D230",id:"paxd230",specs:["دارای WiFi","باطری قابل تعویض"]},
-{name:"آداپتور شارژ",price:"۱,۲۰۰,۰۰۰ تومان",desc:"آداپتور شارژ با کیفیت",id:"adapter",specs:["سرعت شارژ بالا","سازگار با تمام مدل‌ها"]},
-{name:"کابل شارژ",price:"۵۰۰,۰۰۰ تومان",desc:"کابل مقاوم و منعطف",id:"cable",specs:["طول ۱ متر","پوشش ضد گره"]},
-{name:"باتری دستگاه",price:"۶۰۰,۰۰۰ تومان",desc:"باتری با ظرفیت بالا",id:"battery",specs:["طول عمر طولانی","قابل شارژ مجدد"]},
-{name:"نرم‌افزار دستگاه",price:"۷۰۰,۰۰۰ تومان",desc:"نرم‌افزار کاربردی",id:"software",specs:["رابط کاربری ساده","آپدیت رایگان"]},
-{name:"۱۰ تایی کاغذ رول دستگاه",price:"۱۲۰,۰۰۰ تومان",desc:"کاغذ رول با کیفیت",id:"paper",specs:["۱۰ عدد در بسته","مقاوم در حرارت"]}
-];
+    <script>
+        // داده‌های خدمات
+        const services = [
+            {
+                id: 1,
+                name: "ممبر تلگرام",
+                type: "فیک",
+                description: "افزایش ممبر کانال یا گروه تلگرام با کیفیت بالا",
+                price: 50000,
+                unit: "هر 1000 عدد",
+                badge: "fake",
+                features: ["تحویل فوری", "کیفیت متوسط", "پشتیبانی 24 ساعته"]
+            },
+            {
+                id: 2,
+                name: "ممبر تلگرام",
+                type: "واقعی",
+                description: "ممبر واقعی و فعال با پروفایل کامل",
+                price: 120000,
+                unit: "هر 1000 عدد",
+                badge: "real",
+                features: ["تحویل تدریجی", "کیفیت عالی", "ضمانت برگشت"]
+            },
+            {
+                id: 3,
+                name: "فالوور اینستاگرام",
+                type: "فیک",
+                description: "افزایش فالوور اینستاگرام با پکیج اقتصادی",
+                price: 60000,
+                unit: "هر 1000 عدد",
+                badge: "fake",
+                features: ["تحویل سریع", "قیمت مناسب", "روند طبیعی"]
+            },
+            {
+                id: 4,
+                name: "فالوور اینستاگرام",
+                type: "پریمیوم",
+                description: "فالوور با پروفایل کامل و فعالیت واقعی",
+                price: 200000,
+                unit: "هر 1000 عدد",
+                badge: "real",
+                features: ["تحویل 3-7 روزه", "فعالیت واقعی", "ضمانت ماندگاری"]
+            },
+            {
+                id: 5,
+                name: "ممبر روبیکا",
+                type: "فیک",
+                description: "افزایش ممبر کانال یا گروه روبیکا",
+                price: 40000,
+                unit: "هر 1000 عدد",
+                badge: "fake",
+                features: ["تحویل آنی", "قیمت استثنائی", "پشتیبانی فنی"]
+            },
+            {
+                id: 6,
+                name: "اکانت پریمیوم تلگرام",
+                type: "1 ماهه",
+                description: "تمام امکانات پریمیوم تلگرام به مدت یک ماه",
+                price: 80000,
+                unit: "ماهیانه",
+                badge: "real",
+                features: ["حذف تبلیغات", "لیمیت بالاتر", "امکانات ویژه"]
+            },
+            {
+                id: 7,
+                name: "سابسکرایبر یوتیوب",
+                type: "فیک",
+                description: "افزایش سابسکرایبر کانال یوتیوب",
+                price: 75000,
+                unit: "هر 1000 عدد",
+                badge: "fake",
+                features: ["تحویل امن", "نمایش واقعی", "پشتیبانی دائمی"]
+            },
+            {
+                id: 8,
+                name: "کانفیگ V2Ray",
+                type: "حجمی",
+                description: "کانفیگ پرسرعت V2Ray برای عبور از فیلترینگ",
+                price: 10000,
+                unit: "هر گیگابایت",
+                badge: "real",
+                features: ["سرعت بالا", "پایداری عالی", "امنیت کامل"]
+            },
+            {
+                id: 9,
+                name: "کانفیگ V2Ray",
+                type: "نامحدود",
+                description: "اشتراک ماهانه بدون محدودیت حجم",
+                price: 150000,
+                unit: "ماهیانه",
+                badge: "real",
+                features: ["بدون محدودیت", "پشتیبانی VIP", "سرعت تضمینی"]
+            }
+        ];
 
-// ایجاد اسلایدرها
-const sliderTop=document.getElementById('sliderTop');
-const sliderBottom=document.getElementById('sliderBottom');
-products.forEach(p=>{
-const card=document.createElement('div');card.className='card';
-card.innerHTML=`<h3>${p.name}</h3><div class="price">${p.price}</div><button onclick="showProduct('${p.id}')">مشاهده</button>`;
-if(["adapter","cable","battery","software","paper"].includes(p.id)){
-  sliderBottom.appendChild(card);
-}else{
-  sliderTop.appendChild(card);
-}
-});
+        // متغیرهای گلوبال
+        let currentOrder = null;
+        const modal = document.getElementById('orderModal');
+        const closeModal = document.getElementById('closeModal');
 
-// اسلایدر خودکار سبک
-let scrollTop=0; const cardWidthTop=220;
-setInterval(()=>{scrollTop+=cardWidthTop;if(scrollTop>=sliderTop.scrollWidth-sliderTop.clientWidth)scrollTop=0;sliderTop.style.transform=`translateX(-${scrollTop}px)`;},3000);
-let scrollBottom=0; const cardWidthBottom=220;
-setInterval(()=>{scrollBottom+=cardWidthBottom;if(scrollBottom>=sliderBottom.scrollWidth-sliderBottom.clientWidth)scrollBottom=0;sliderBottom.style.transform=`translateX(-${scrollBottom}px)`;},3000);
+        // وقتی DOM لود شد
+        document.addEventListener('DOMContentLoaded', function() {
+            // لود خدمات
+            loadServices();
+            
+            // انیمیشن آمار
+            animateStats();
+            
+            // هندلرهای مدال
+            if (closeModal) {
+                closeModal.addEventListener('click', hideModal);
+            }
+            
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        hideModal();
+                    }
+                });
+            }
+            
+            // هندلر فرم سفارش
+            const orderForm = document.getElementById('orderForm');
+            if (orderForm) {
+                orderForm.addEventListener('submit', handleOrderSubmit);
+            }
+            
+            // هندلر تغییر تعداد
+            const quantityInput = document.getElementById('quantity');
+            if (quantityInput) {
+                quantityInput.addEventListener('input', updateTotalPrice);
+            }
+            
+            // منوی موبایل
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            }
+        });
 
-// منوی همبرگری
-document.getElementById('menuToggle').addEventListener('click',()=>{menu.style.display=(menu.style.display==="flex")?"none":"flex";});
+        // لود خدمات در صفحه
+        function loadServices() {
+            const container = document.getElementById('servicesContainer');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            services.forEach(service => {
+                const card = createServiceCard(service);
+                container.appendChild(card);
+            });
+        }
 
-// نمایش بخش‌ها
-function showSection(id){
-document.getElementById('home').classList.add('hidden');
-document.getElementById('productPage').classList.add('hidden');
-document.getElementById('cartPage').classList.add('hidden');
-document.getElementById(id).classList.remove('hidden');
-if(id==='cartPage') updateCart();
-}
+        // ساخت کارت سرویس
+        function createServiceCard(service) {
+            const card = document.createElement('div');
+            card.className = 'service-card';
+            card.dataset.id = service.id;
+            
+            const badgeClass = service.badge === 'real' ? 'badge-real' : 'badge-fake';
+            const badgeText = service.badge === 'real' ? 'واقعی' : 'فیک';
+            
+            card.innerHTML = `
+                <div class="service-header">
+                    <span class="service-badge ${badgeClass}">${badgeText}</span>
+                    <h3 class="service-title">${service.name}</h3>
+                    <p class="service-description">${service.description}</p>
+                    <div class="service-price">
+                        ${service.price.toLocaleString()} تومان
+                        <small>${service.unit}</small>
+                    </div>
+                </div>
+                <div class="service-features">
+                    ${service.features.map(feature => `
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>${feature}</span>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="service-actions" style="padding: 20px; border-top: 1px solid var(--border);">
+                    <button class="btn btn-primary btn-block" onclick="showOrderModal(${service.id})">
+                        <i class="fas fa-shopping-cart"></i> سفارش دهید
+                    </button>
+                </div>
+            `;
+            
+            return card;
+        }
 
-// نمایش محصول
-function showProduct(id){
-const product=products.find(p=>p.id===id);
-document.getElementById('productName').textContent=product.name;
-document.getElementById('productPrice').textContent=product.price;
-document.getElementById('productDesc').textContent=product.desc;
-document.getElementById('productImage').src="https://via.placeholder.com/300x200?text=تصویر+محصول";
-const specsUl=document.getElementById('productSpecs'); specsUl.innerHTML="";
-product.specs.forEach(s=>{const li=document.createElement('li');li.textContent=s;specsUl.appendChild(li);});
-showSection('productPage');
+        // نمایش مدال سفارش
+        function showOrderModal(serviceId) {
+            const service = services.find(s => s.id === serviceId);
+            if (!service) return;
+            
+            currentOrder = {...service};
+            
+            // پر کردن اطلاعات مدال
+            document.getElementById('serviceName').textContent = service.name;
+            document.getElementById('serviceType').textContent = `نوع: ${service.type}`;
+            document.getElementById('servicePrice').textContent = `قیمت واحد: ${service.price.toLocaleString()} تومان`;
+            
+            // ریست فرم
+            document.getElementById('email').value = '';
+            document.getElementById('link').value = '';
+            document.getElementById('quantity').value = 1;
+            
+            // آپدیت قیمت کل
+            updateTotalPrice();
+            
+            // نمایش مدال
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
 
-// افزودن به سبد خرید
-document.getElementById('addCart').onclick=function(){
-let cart=JSON.parse(localStorage.getItem('cart'))||[];
-cart.push(product);
-localStorage.setItem('cart',JSON.stringify(cart));
-alert('محصول به سبد خرید اضافه شد!');
-showSection('cartPage');
-updateCart();
-}
-}
+        // مخفی کردن مدال
+        function hideModal() {
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+            currentOrder = null;
+        }
 
-// سبد خرید
-function updateCart(){
-const cartDiv=document.getElementById('cartItems'); cartDiv.innerHTML="";
-let cart=JSON.parse(localStorage.getItem('cart'))||[];
-let total=0;
-cart.forEach(p=>{
-const div=document.createElement('div'); div.className='item';
-div.innerHTML=`<span>${p.name}</span><span>${p.price}</span>`;
-cartDiv.appendChild(div);
-total+=parseInt(p.price.replace(/,/g,'').replace(/ تومان/,'')||0);
-});
-document.getElementById('totalPrice').textContent='جمع کل: '+total.toLocaleString('fa-IR')+' تومان';
-}
+        // آپدیت قیمت کل
+        function updateTotalPrice() {
+            if (!currentOrder) return;
+            
+            const quantityInput = document.getElementById('quantity');
+            if (!quantityInput) return;
+            
+            const quantity = parseInt(quantityInput.value) || 1;
+            const totalPrice = currentOrder.price * quantity;
+            
+            const totalElement = document.getElementById('totalPrice');
+            if (totalElement) {
+                totalElement.textContent = totalPrice.toLocaleString();
+            }
+        }
 
-function checkout(){alert('پرداخت شبیه‌سازی شد، سبد خرید پاک شد.');localStorage.removeItem('cart');updateCart();}
-</script>
+        // هندلر ارسال سفارش
+        function handleOrderSubmit(e) {
+            e.preventDefault();
+            
+            if (!currentOrder) return;
+            
+            const email = document.getElementById('email').value.trim();
+            const link = document.getElementById('link').value.trim();
+            const quantity = parseInt(document.getElementById('quantity').value) || 1;
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+            
+            // اعتبارسنجی ساده
+            if (!email || !link) {
+                alert('لطفاً تمام فیلدهای ضروری را پر کنید.');
+                return;
+            }
+            
+            // محاسبه قیمت نهایی
+            const totalPrice = currentOrder.price * quantity;
+            
+            // در واقعیت اینجا به سرور ارسال می‌شود
+            console.log('سفارش ثبت شد:', {
+                service: currentOrder.name,
+                type: currentOrder.type,
+                email,
+                link,
+                quantity,
+                totalPrice,
+                paymentMethod
+            });
+            
+            // نمایش پیام موفقیت
+            alert(`سفارش شما با موفقیت ثبت شد!\nمبلغ قابل پرداخت: ${totalPrice.toLocaleString()} تومان\nلطفاً برای پرداخت اقدام کنید.`);
+            
+            // بستن مدال
+            hideModal();
+            
+            // آپدیت آمار (در حالت واقعی از سرور دریافت می‌شود)
+            updateStats();
+        }
+
+        // انیمیشن آمار
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.dataset.target);
+                const duration = 2000; // 2 ثانیه
+                const steps = 60; // تعداد فریم
+                const increment = target / steps;
+                let current = 0;
+                let step = 0;
+                
+                const timer = setInterval(() => {
+                    step++;
+                    current = Math.min(increment * step, target);
+                    stat.textContent = Math.floor(current);
+                    
+                    if (step >= steps) {
+                        clearInterval(timer);
+                        stat.textContent = target;
+                    }
+                }, duration / steps);
+            });
+        }
+
+        // آپدیت آمار سفارش
+        function updateStats() {
+            const todayOrders = document.querySelector('.stat-number[data-target="27"]');
+            if (todayOrders) {
+                const current = parseInt(todayOrders.textContent);
+                todayOrders.textContent = (current + 1).toString();
+                todayOrders.dataset.target = (current + 1).toString();
+            }
+        }
+
+        // منوی موبایل
+        function toggleMobileMenu() {
+            const nav = document.querySelector('.nav');
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'flex';
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '100%';
+                nav.style.left = '0';
+                nav.style.right = '0';
+                nav.style.background = 'var(--dark-card)';
+                nav.style.padding = '20px';
+                nav.style.borderTop = '1px solid var(--border)';
+                nav.style.zIndex = '1000';
+            }
+        }
+
+        // شبیه‌سازی لاگین
+        function simulateLogin() {
+            alert('برای دمو از این دکمه استفاده کنید. در نسخه واقعی به پنل کاربری هدایت می‌شوید.');
+        }
+
+        // افزایش شمارنده سبد خرید
+        function updateCartCount(count) {
+            const cartBtn = document.querySelector('.btn-primary');
+            if (cartBtn) {
+                cartBtn.innerHTML = `<i class="fas fa-shopping-basket"></i> سبد خرید (${count})`;
+            }
+        }
+
+        // مقداردهی اولیه
+        updateCartCount(0);
+    </script>
 </body>
 </html>
